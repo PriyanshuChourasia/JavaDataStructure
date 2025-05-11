@@ -53,6 +53,45 @@ public class DoublyLinkedList {
         tail = newNode;
     }
 
+
+    /**
+     * delete at first node function to be implemented
+     * **/
+
+    public void deleteAtFirst(){
+        if(head == null){
+            System.out.println("List is empty to perform this operation");
+            return;
+        }
+
+        Node currentHeadNode = head;
+        head = head.next;
+
+        if(head != null){
+            head.prev = null;
+        }
+
+        currentHeadNode.next = null;
+    }
+
+
+    public void deleteAtLast(){
+        if(head == null){
+            System.out.println("Cannot perform this operation");
+            return;
+        }
+
+        Node currentTailNode = tail;
+        System.out.println(tail.prev.data + " tail");
+
+        if(tail.prev != null){
+            tail = tail.prev;
+            tail.next = null;
+        }
+
+        currentTailNode.prev = null;
+    }
+
     public void printDoubleNode(){
         if(head == null){
             System.out.println("No list to print");
@@ -86,8 +125,16 @@ public class DoublyLinkedList {
         System.out.println("Doubly Linked List : ");
         DoublyLinkedList dblist = new DoublyLinkedList();
         dblist.insertAtFirstData(1);
+        dblist.insertAtFirstData(23);
+        dblist.insertAtFirstData(34);
+        dblist.insertAtFirstData(7);
+        dblist.insertAtFirstData(9);
         dblist.insertAtLastNode(3);
         dblist.insertAtLastNode(5);
+
+        dblist.deleteAtLast();
+
+//        dblist.deleteAtFirst();
 
 
         dblist.printDoubleNode();
