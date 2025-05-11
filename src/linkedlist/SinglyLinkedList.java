@@ -67,9 +67,13 @@ public class SinglyLinkedList {
      * delete first linked list operation will be done
      * **/
 
+    /***
+     * delete the first node of linked list
+     * */
     public void deleteFirst(){
         if(head == null){
             System.out.println("List is empty");
+            return;
         }
 
         Node currentNode = head;
@@ -77,18 +81,55 @@ public class SinglyLinkedList {
         head = currentNode.next;
     }
 
-    public void deleteNode(Integer data){
+    /*****
+     * delete the last node of linked list
+     * ****/
+
+    public void deleteLast(){
         if(head == null){
             System.out.println("List is Empty");
             return;
         }
 
-        Node currentNode = head;
+        if(head.next == null){
+            head = null;
+            return;
+        }
+
+        Node currentNode = head.next;
+        Node prevNode = head;
+
+        while(currentNode.next != null){
+            prevNode = currentNode;
+            currentNode = currentNode.next;
+        }
+
+        prevNode.next = null;
+
+    }
+
+    public void deleteNode(int data){
+        if(head == null){
+            System.out.println("List is Empty");
+            return;
+        }
+
+        if(head.data == data){
+            Node currenNode = head;
+            head = currenNode.next;
+            return;
+        }
+
+        Node currentNode = head.next;
+        Node prevNode = head;
 
         while (currentNode.next != null){
             if(currentNode.data == data){
-
+                prevNode.next = currentNode.next;
+                return;
             }
+            prevNode = currentNode;
+            currentNode = currentNode.next;
         }
     }
 
@@ -120,20 +161,24 @@ public class SinglyLinkedList {
         list.insertIntoList(45);
         list.insertIntoList(57);
 
+        list.deleteNode(38);
+
+        list.deleteLast();
+
         list.deleteFirst();
 
-//        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
 
-//        int ans;
-//        do {
-//            System.out.println("Enter number: ");
-//            int num = sc.nextInt();
-//
-//            System.out.println("Do you want to enter another node data: ");
-//            ans = sc.nextInt();
-//            list.insertIntoList(num);
-//        } while (ans != 0);
+        int ans;
+        do {
+            System.out.println("Enter number: ");
+            int num = sc.nextInt();
+
+            System.out.println("Do you want to enter another node data: ");
+            ans = sc.nextInt();
+            list.insertIntoList(num);
+        } while (ans != 0);
 
         list.printList();
     }
