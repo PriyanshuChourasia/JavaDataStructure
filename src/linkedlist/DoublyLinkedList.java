@@ -69,6 +69,8 @@ public class DoublyLinkedList {
 
         if(head != null){
             head.prev = null;
+        }else {
+            tail = null;
         }
 
         currentHeadNode.next = null;
@@ -112,6 +114,8 @@ public class DoublyLinkedList {
             return;
         }
 
+        System.out.println(tail.data+" tail data ");
+
         Node currentNode = tail;
 
         while(currentNode != null){
@@ -125,16 +129,16 @@ public class DoublyLinkedList {
         System.out.println("Doubly Linked List : ");
         DoublyLinkedList dblist = new DoublyLinkedList();
         dblist.insertAtFirstData(1);
-        dblist.insertAtFirstData(23);
-        dblist.insertAtFirstData(34);
-        dblist.insertAtFirstData(7);
-        dblist.insertAtFirstData(9);
-        dblist.insertAtLastNode(3);
-        dblist.insertAtLastNode(5);
+//        dblist.insertAtFirstData(23);
+//        dblist.insertAtFirstData(34);
+//        dblist.insertAtFirstData(7);
+//        dblist.insertAtFirstData(9);
+//        dblist.insertAtLastNode(3);
+//        dblist.insertAtLastNode(5);
 
-        dblist.deleteAtLast();
+//        dblist.deleteAtLast();
 
-//        dblist.deleteAtFirst();
+        dblist.deleteAtFirst();
 
 
         dblist.printDoubleNode();
