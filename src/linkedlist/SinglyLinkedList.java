@@ -164,7 +164,7 @@ public class SinglyLinkedList {
         list.deleteNode(38);
 
         list.deleteLast();
-
+    
         list.deleteFirst();
 
         Scanner sc = new Scanner(System.in);
