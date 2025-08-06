@@ -1,5 +1,6 @@
 package WishArrayQuestions;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 
@@ -171,12 +172,186 @@ class Array2{
         }
         return true;
     }
+
+//    Given n, return an array that builds up with increasing numbers down the right side.
+
+    public int[] increaseuptoN(int num){
+//        [0,0,1,0,2,1,3,2,1];
+        int len = num * num;
+        int[] arr = new int[len];
+        int a = 1;
+        int x = num;
+        int tlen = len - 1;
+        for(int i=0; i<num; i++){
+            a=1;
+            for(int j=0; j<num; j++){
+                if(a<=x){
+                    arr[tlen] = a;
+                    a++;
+                }
+                tlen--;
+            }
+            x--;
+        }
+        return arr;
+    }
+
+//    Given n, return an array like [1, 1,2, 1,2,3, ... 1,2,3..n]
+
+    public int[] increasingArray(int num){
+        int size = 0;
+
+        for (int i=num; i>0;i--){
+            size = size + i;
+        }
+        System.out.println(size+" size");
+
+        int[] arr = new int[size];
+        int a = 0;
+
+        for (int i=0; i<num; i++){
+            for(int j=0; j<i+1; j++){
+                arr[a] = j+1;
+                a++;
+            }
+        }
+
+        return arr;
+    }
+
+//    Return the size of the largest mirror section found in the array.
+
+    public int mirrorArray(int[] nums){
+        int max = nums[0];
+
+        for(int i=0; i<nums.length; i++){
+            int len = i+1;
+            if(nums[i] == nums[nums.length - len] && max < nums[i]){
+                max = nums[i];
+            }
+        }
+
+        return max;
+    }
+
+//    Count the number of clumps in the array. A clump is a series of 2 or more of the same element.
+
+    public int clumpSeries(int[] nums){
+        int size=0;
+
+        for(int i=0; i<nums.length; i++){
+            if(i < nums.length -1 && nums[i] == nums[i+1]){
+                size++;
+            }
+        }
+        return size;
+    }
+
+//    Return an array with even numbers at the front, odd at the back.
+
+    public int[] oddArray(int[] nums){
+
+        for(int i=0; i<nums.length; i++){
+            if(i< nums.length - 1 && nums[i+1] % 2 == 0){
+                for(int j=i+1; j>0; j--){
+                    if(nums[j-1] % 2 == 0){
+                        break;
+                    }else{
+                        int temp = nums[j];
+                        nums[j] = nums[j-1];
+                        nums[j-1] = temp;
+                    }
+                }
+            }
+        }
+        return nums;
+    }
+
+//    Replace every 0 with the largest odd number to the right of the 0.
+
+    public int[] largestOdd(int[] nums){
+
+        int max = 0;
+
+        for(int i=0; i<nums.length; i++){
+            max = 0;
+            if(nums[i] == 0){
+                for(int j=i+1; j<nums.length; j++){
+                    if(nums[j] %2 != 0 && nums[j] > max){
+                        max = nums[j];
+                    }
+                    else if(nums[j] % 2 == 0){
+                        break;
+                    }
+                }
+                nums[i] = max;
+            }
+        }
+        return nums;
+    }
+
+//    Return an array that moves all the 10's to the end.
+
+    public int[] toend(int[] nums){
+
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] == 10){
+                for(int j=nums.length - 1; j>i; j--){
+                    if(nums[j] != 10){
+                        int temp = nums[i];
+                        nums[i] = nums[j];
+                        nums[j] = temp;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return nums;
+    }
+
+//     For each multiple of 10, change subsequent numbers to that value until the next multiple of 10.
+
+    public int[] multipleof10(int[] nums){
+        int max = nums[0];
+        int index = 0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] % 10 == 0){
+                max = nums[i];
+                index = i;
+            }
+            if(index > 0){
+                nums[i] = max;
+            }
+        }
+
+        return nums;
+    }
+
+//    Return a new array that contains the elements before the first 4 in the input array.
+
+    public int[] fourArray(int[] nums){
+        int size= 0;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i] == 4){
+                break;
+            }
+            size++;
+        }
+        int[] arr = new int[size];
+        for(int i=0; i<size; i++){
+            arr[i] = nums[i];
+        }
+
+        return arr;
+    }
+
 }
 
 public class ArrayQuesPart2 {
     public static void main(String[] args){
         Array2 array2 = new Array2();
-        int[] nums = {1,2,4,6};
+        int[] nums = {1,2,4,1};
         int[] nums2 = {2,3};
 //        System.out.println(array2.counteven(nums));
 //        System.out.println(array2.diff(nums));
@@ -188,9 +363,15 @@ public class ArrayQuesPart2 {
 //        System.out.println(array2.oneFourSum(nums));
 //        System.out.println(array2.everyEle1or4(nums));
 //        System.out.println(array2.found7separate(nums));
-        System.out.println(array2.outerInnerCheck(nums,nums2));
-
-
+//        System.out.println(array2.outerInnerCheck(nums,nums2));
+//        System.out.println(Arrays.toString(array2.increaseuptoN(4)));
+//        System.out.println(Arrays.toString(array2.increasingArray(3)));
+//        System.out.println(array2.clumpSeries(nums));
+//        System.out.println(Arrays.toString(array2.oddArray(nums)));
+//        System.out.println(Arrays.toString(array2.largestOdd(nums)));
+//        System.out.println(Arrays.toString(array2.toend(nums)));
+//        System.out.println(Arrays.toString(array2.multipleof10(nums)));
+        System.out.println(Arrays.toString(array2.fourArray(nums)));
 
 
 //        Scanner sc = new Scanner(System.in);
